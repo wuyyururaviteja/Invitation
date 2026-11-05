@@ -307,7 +307,9 @@
   </style>
 </head>
 <body>
-
+ <audio id="engagementSong" loop preload="auto">
+  <source src="song.mp3" type="audio/mpeg">
+ </audio>
   <!-- Floating Sparkles -->
   <div class="petals-container">
     <div class="petal" style="width:14px; height:14px; left:12%; animation-duration:11s; animation-delay:0s;"></div>
@@ -344,10 +346,10 @@
 
       <!-- View Selector Tabs -->
       <div class="nav-tabs">
-        <button id="btn-standard" class="active" onclick="setView('standard')">Standard</button>
-        <button id="btn-hours" onclick="setView('hours')">Total Hours</button>
-        <button id="btn-minutes" onclick="setView('minutes')">Total Minutes</button>
-        <button id="btn-seconds" onclick="setView('seconds')">Total Seconds</button>
+        <button id="btn-standard" class="active" onclick="setView('standard')">The Journey</button>
+        <button id="btn-hours" onclick="setView('hours')">Hours of Anticipation</button>
+        <button id="btn-minutes" onclick="setView('minutes')">Shared Moments</button>
+        <button id="btn-seconds" onclick="setView('seconds')">Heartbeats Away</button>
       </div>
 
       <!-- Live Counters -->
@@ -463,95 +465,59 @@
     // -------------------------------------------------------------
     // BUILT-IN WEB AUDIO SYNTHESIZER (No external file needed)
     // -------------------------------------------------------------
-    var audioCtx = null;
-    var isMusicPlaying = false;
-    var melodyTimer = null;
-    var noteStep = 0;
+    // -------------------------------------------------------------
+// LOCAL GITHUB REPO AUDIO PLAYER
+// -------------------------------------------------------------
+var audio = document.getElementById('engagementSong');
+var musicBtn = document.getElementById('musicBtn');
+var musicText = document.getElementById('musicText');
+var isMusicPlaying = false;
 
-    // Romantic acoustic harp/bell notes (pentatonic warm chords)
-    var melodyNotes = [
-      261.63, 329.63, 392.00, 523.25,
-      392.00, 329.63, 440.00, 329.63,
-      349.23, 440.00, 523.25, 659.25,
-      523.25, 392.00, 329.63, 261.63
-    ];
+function playAudio() {
+  audio.play().then(function() {
+    isMusicPlaying = true;
+    musicBtn.classList.add('playing');
+    musicText.textContent = 'Music Playing';
 
-    function playNote(freq) {
-      if (!audioCtx || !isMusicPlaying) return;
-      
-      var osc = audioCtx.createOscillator();
-      var gain = audioCtx.createGain();
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-      gain.gain.setValueAtTime(0, audioCtx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + 1.9);
+    var notice = document.getElementById('audioNotice');
+    if (notice) {
+      notice.style.opacity = '0';
+      setTimeout(function() {
+        if (notice.parentNode) notice.parentNode.removeChild(notice);
+      }, 600);
     }
+  }).catch(function(err) {
+    console.log('Autoplay waiting for user tap');
+  });
+}
 
-    function triggerMelody() {
-      if (!isMusicPlaying) return;
-      playNote(melodyNotes[noteStep % melodyNotes.length]);
-      noteStep++;
-      melodyTimer = setTimeout(triggerMelody, 650);
-    }
+function pauseAudio() {
+  audio.pause();
+  isMusicPlaying = false;
+  musicBtn.classList.remove('playing');
+  musicText.textContent = 'Play Music';
+}
 
-    function startMusic() {
-      if (!audioCtx) {
-        var AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContext();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      isMusicPlaying = true;
-      document.getElementById('musicBtn').classList.add('playing');
-      document.getElementById('musicText').textContent = 'Music Playing';
+function toggleMusic(e) {
+  if (e) e.stopPropagation();
+  if (isMusicPlaying) {
+    pauseAudio();
+  } else {
+    playAudio();
+  }
+}
 
-      var notice = document.getElementById('audioNotice');
-      if (notice) {
-        notice.style.opacity = '0';
-        setTimeout(function() { if (notice.parentNode) notice.parentNode.removeChild(notice); }, 600);
-      }
+// Automatically start playing on the guest's first tap anywhere
+var userInteracted = false;
+function handleFirstUserTap() {
+  if (!userInteracted) {
+    userInteracted = true;
+    playAudio();
+  }
+}
 
-      clearTimeout(melodyTimer);
-      triggerMelody();
-    }
-
-    function stopMusic() {
-      isMusicPlaying = false;
-      clearTimeout(melodyTimer);
-      document.getElementById('musicBtn').classList.remove('playing');
-      document.getElementById('musicText').textContent = 'Play Music';
-    }
-
-    function toggleMusic(e) {
-      if (e) e.stopPropagation();
-      if (isMusicPlaying) {
-        stopMusic();
-      } else {
-        startMusic();
-      }
-    }
-
-    // Auto-start on user's first tap anywhere on the screen
-    var userInteracted = false;
-    function handleFirstUserTap() {
-      if (!userInteracted) {
-        userInteracted = true;
-        startMusic();
-      }
-    }
-
-    window.addEventListener('click', handleFirstUserTap, { once: true });
-    window.addEventListener('touchstart', handleFirstUserTap, { once: true });
+window.addEventListener('click', handleFirstUserTap, { once: true });
+window.addEventListener('touchstart', handleFirstUserTap, { once: true });
   </script>
 </body>
 </html>
