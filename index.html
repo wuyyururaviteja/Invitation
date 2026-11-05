@@ -3,70 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Special Celebration — November 15</title>
+  <title>A Special Celebration in Our Life — November 15</title>
+  
+  <!-- Google Fonts for elegant typography -->
+  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+  <link href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;500;600&display=swap)" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Playfair Display', Georgia, -apple-system, BlinkMacSystemFont, "Segoe UI", serif;
     }
 
     body {
       min-height: 100vh;
+      background: linear-gradient(135deg, #1a1721 0%, #2a2233 50%, #16121d 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at 50% 20%, #1f1b2e, #0e0c15 80%);
-      color: #f5ede4;
-      overflow-x: hidden;
-      padding: 1.5rem;
-      position: relative;
+      padding: 24px 16px;
+      color: #2b2216;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    .background-decorations {
+    /* Ambient background gold glow */
+    .glow-circle {
       position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .bokeh {
-      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0) 70%);
       border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.28;
-      animation: float 14s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+      animation: pulse 8s ease-in-out infinite alternate;
     }
 
-    .b1 {
-      width: 450px;
-      height: 450px;
-      background: #d4af37;
-      top: 5%;
-      left: 10%;
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.5; }
+      100% { transform: scale(1.15); opacity: 0.85; }
     }
 
-    .b2 {
-      width: 380px;
-      height: 380px;
-      background: #c26d83;
-      bottom: 10%;
-      right: 15%;
-      animation-duration: 18s;
-      animation-delay: -5s;
+    /* Main Card - Bright, warm ivory for high contrast */
+    .card-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 540px;
+      background: #fdfaf6;
+      border: 2px solid #d4af37;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(212, 175, 55, 0.25);
+      padding: 40px 24px;
+      text-align: center;
     }
 
-    .b3 {
-      width: 250px;
-      height: 250px;
-      background: #795290;
-      top: 50%;
-      left: 60%;
-      animation-duration: 10s;
-      animation-delay: -2s;
+    .border-accent {
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 14px;
+      padding: 28px 18px;
     }
 
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
+    .ornament {
+      color: #b38728;
+      font-size: 1.2rem;
+      letter-spacing: 6px;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #8b6b23;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.85rem;
+      color: #1f1910;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .event-details {
+      font-size: 0.95rem;
+      color: #6d5b45;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    /* Tab Controls */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      background: #f1ebd9;
+      border: 1px solid #dcd1ba;
+      color: #635035;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #b38728;
+      color: #ffffff;
+      border-color: #b38728;
+      box-shadow: 0 2px 8px rgba(179, 135, 40, 0.35);
+    }
+
+    /* Timers */
+    .countdown-box {
+      margin-bottom: 24px;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .time-slot {
+      background: #ffffff;
+      border: 1px solid #e2d7c0;
+      border-radius: 10px;
+      padding: 10px 6px;
+      min-width: 66px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .time-num {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #a0781e;
+      font-family: 'Cinzel', serif;
+      line-height: 1.1;
+    }
+
+    .time-tag {
+      display: block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7b6f60;
+      margin-top: 4px;
+      font-weight: 600;
+    }
