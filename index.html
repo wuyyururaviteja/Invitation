@@ -1,144 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Special Celebration in Our Life — November 15</title>
-  
-  <!-- Google Fonts for elegant typography -->
-  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-  <link href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;500;600&display=swap)" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celebration Countdown — November 15</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
     }
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #1a1721 0%, #2a2233 50%, #16121d 100%);
+      background-color: #121016;
+      background-image: radial-gradient(circle at 50% 20%, #2a2236 0%, #121016 80%);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
-      color: #2b2216;
-      font-family: 'Montserrat', sans-serif;
+      padding: 20px;
+      color: #332619;
     }
 
-    /* Ambient background gold glow */
-    .glow-circle {
-      position: fixed;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      animation: pulse 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.9); opacity: 0.5; }
-      100% { transform: scale(1.15); opacity: 0.85; }
-    }
-
-    /* Main Card - Bright, warm ivory for high contrast */
-    .card-container {
-      position: relative;
-      z-index: 1;
+    .card {
       width: 100%;
-      max-width: 540px;
-      background: #fdfaf6;
+      max-width: 520px;
+      background: #fffdfa;
       border: 2px solid #d4af37;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(212, 175, 55, 0.25);
-      padding: 40px 24px;
+      border-radius: 18px;
+      padding: 36px 20px;
       text-align: center;
-    }
-
-    .border-accent {
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      border-radius: 14px;
-      padding: 28px 18px;
-    }
-
-    .ornament {
-      color: #b38728;
-      font-size: 1.2rem;
-      letter-spacing: 6px;
-      margin-bottom: 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
     }
 
     .badge {
       display: inline-block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
+      font-size: 11px;
       letter-spacing: 3px;
-      color: #8b6b23;
-      font-weight: 600;
-      margin-bottom: 14px;
+      text-transform: uppercase;
+      color: #8f6e28;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
     h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.85rem;
-      color: #1f1910;
-      line-height: 1.3;
-      margin-bottom: 8px;
+      font-size: 26px;
+      color: #1c150c;
+      margin-bottom: 6px;
       font-weight: 700;
     }
 
-    .event-details {
-      font-size: 0.95rem;
-      color: #6d5b45;
-      font-weight: 500;
-      letter-spacing: 0.5px;
+    .event-time {
+      font-size: 14px;
+      color: #7d6b54;
       margin-bottom: 24px;
     }
 
-    /* Tab Controls */
-    .tab-bar {
+    .nav-tabs {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
     }
 
-    .tab-btn {
-      background: #f1ebd9;
+    .nav-tabs button {
+      background: #f5f0e4;
       border: 1px solid #dcd1ba;
-      color: #635035;
-      font-size: 0.75rem;
+      color: #614e35;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.8px;
       text-transform: uppercase;
-      padding: 6px 12px;
+      padding: 7px 12px;
       border-radius: 20px;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
 
-    .tab-btn.active {
+    .nav-tabs button.active {
       background: #b38728;
       color: #ffffff;
       border-color: #b38728;
-      box-shadow: 0 2px 8px rgba(179, 135, 40, 0.35);
     }
 
-    /* Timers */
-    .countdown-box {
+    .countdown-display {
       margin-bottom: 24px;
-      min-height: 90px;
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .timer-row {
+    .grid-view {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -146,30 +99,187 @@
       width: 100%;
     }
 
-    .time-slot {
+    .box {
       background: #ffffff;
-      border: 1px solid #e2d7c0;
+      border: 1px solid #e5dac4;
       border-radius: 10px;
-      padding: 10px 6px;
-      min-width: 66px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      padding: 10px 4px;
+      min-width: 65px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
-    .time-num {
+    .num {
       display: block;
-      font-size: 1.75rem;
+      font-size: 26px;
       font-weight: 700;
       color: #a0781e;
-      font-family: 'Cinzel', serif;
       line-height: 1.1;
     }
 
-    .time-tag {
+    .lbl {
       display: block;
-      font-size: 0.65rem;
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #7b6f60;
       margin-top: 4px;
-      font-weight: 600;
     }
+
+    .sep {
+      font-size: 22px;
+      font-weight: bold;
+      color: #b38728;
+      margin-top: -10px;
+    }
+
+    .single-view {
+      display: none;
+      background: #ffffff;
+      border: 1px solid #e5dac4;
+      border-radius: 12px;
+      padding: 16px 20px;
+      width: 100%;
+    }
+
+    .single-num {
+      display: block;
+      font-size: 38px;
+      font-weight: 700;
+      color: #a0781e;
+      line-height: 1.1;
+    }
+
+    .single-lbl {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #635035;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .footer-msg {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #635445;
+      font-style: italic;
+      border-top: 1px solid #ebdec6;
+      padding-top: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <span class="badge">You Are Cordially Invited</span>
+    <h1>A Special Celebration</h1>
+    <p class="event-time">Sunday, November 15, 2026 • 10:00 AM</p>
+
+    <div class="nav-tabs">
+      <button id="btn-standard" class="active" onclick="setView('standard')">Standard</button>
+      <button id="btn-hours" onclick="setView('hours')">Total Hours</button>
+      <button id="btn-minutes" onclick="setView('minutes')">Total Minutes</button>
+      <button id="btn-seconds" onclick="setView('seconds')">Total Seconds</button>
+    </div>
+
+    <div class="countdown-display">
+      <div id="standardBox" class="grid-view">
+        <div class="box">
+          <span class="num" id="days">--</span>
+          <span class="lbl">Days</span>
+        </div>
+        <span class="sep">:</span>
+        <div class="box">
+          <span class="num" id="hours">--</span>
+          <span class="lbl">Hours</span>
+        </div>
+        <span class="sep">:</span>
+        <div class="box">
+          <span class="num" id="minutes">--</span>
+          <span class="lbl">Mins</span>
+        </div>
+        <span class="sep">:</span>
+        <div class="box">
+          <span class="num" id="seconds">--</span>
+          <span class="lbl">Secs</span>
+        </div>
+      </div>
+
+      <div id="singleBox" class="single-view">
+        <span class="single-num" id="singleNum">--</span>
+        <div class="single-lbl" id="singleLbl">Hours Remaining</div>
+      </div>
+    </div>
+
+    <p class="footer-msg">We look forward to celebrating this joyous milestone together.</p>
+  </div>
+
+  <script>
+    var targetDate = new Date(2026, 10, 15, 10, 0, 0).getTime();
+    var currentView = 'standard';
+
+    function renderTime() {
+      var now = new Date().getTime();
+      var diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.querySelector('.countdown-display').innerHTML =
+          '<h2 style="color: #a0781e;">The Celebration Has Begun!</h2>';
+        return;
+      }
+
+      var totalSecs = Math.floor(diff / 1000);
+      var totalMins = Math.floor(totalSecs / 60);
+      var totalHours = Math.floor(totalMins / 60);
+      var days = Math.floor(totalHours / 24);
+
+      var remHours = totalHours % 24;
+      var remMins = totalMins % 60;
+      var remSecs = totalSecs % 60;
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(remHours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(remMins).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(remSecs).padStart(2, '0');
+
+      var singleNum = document.getElementById('singleNum');
+      var singleLbl = document.getElementById('singleLbl');
+
+      if (currentView === 'hours') {
+        singleNum.textContent = totalHours.toLocaleString();
+        singleLbl.textContent = 'Total Hours to Go';
+      } else if (currentView === 'minutes') {
+        singleNum.textContent = totalMins.toLocaleString();
+        singleLbl.textContent = 'Total Minutes to Go';
+      } else if (currentView === 'seconds') {
+        singleNum.textContent = totalSecs.toLocaleString();
+        singleLbl.textContent = 'Total Seconds to Go';
+      }
+    }
+
+    function setView(mode) {
+      currentView = mode;
+
+      var buttons = document.querySelectorAll('.nav-tabs button');
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+      document.getElementById('btn-' + mode).classList.add('active');
+
+      var standardBox = document.getElementById('standardBox');
+      var singleBox = document.getElementById('singleBox');
+
+      if (mode === 'standard') {
+        standardBox.style.display = 'flex';
+        singleBox.style.display = 'none';
+      } else {
+        standardBox.style.display = 'none';
+        singleBox.style.display = 'block';
+      }
+
+      renderTime();
+    }
+
+    renderTime();
+    setInterval(renderTime, 1000);
+  </script>
+</body>
+</html>
