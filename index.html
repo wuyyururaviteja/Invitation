@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engagement Celebration & Countdown</title>
+  <title>Engagement Celebration &amp; Countdown</title>
   
   <style>
     * {
@@ -15,7 +15,8 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #1b1622 0%, #2b2033 50%, #15111c 100%);
+      background-color: #17131e;
+      background-image: radial-gradient(circle at 50% 20%, #2f223b 0%, #17131e 80%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -25,7 +26,7 @@
       overflow-x: hidden;
     }
 
-    /* Floating Gold Sparkle / Petal Animation */
+    /* Floating Gold Sparkle Animation */
     .petals-container {
       position: fixed;
       inset: 0;
@@ -44,28 +45,28 @@
 
     @keyframes drift {
       0% {
-        transform: translateY(105vh) translateX(0) rotate(0deg);
+        transform: translateY(105vh) translateX(0);
         opacity: 0;
       }
       20% {
-        opacity: 0.45;
+        opacity: 0.5;
       }
       80% {
         opacity: 0.35;
       }
       100% {
-        transform: translateY(-10vh) translateX(60px) rotate(360deg);
+        transform: translateY(-10vh) translateX(50px);
         opacity: 0;
       }
     }
 
-    /* Floating Music Toggle Pill */
+    /* Floating Music Toggle Button */
     .music-control {
       position: fixed;
       top: 18px;
       right: 18px;
       z-index: 10;
-      background: rgba(255, 253, 248, 0.92);
+      background: #fffdf8;
       border: 1px solid #d4af37;
       padding: 8px 16px;
       border-radius: 30px;
@@ -73,199 +74,61 @@
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
-      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
       font-size: 13px;
       font-weight: 600;
       color: #7a5f22;
+      transition: all 0.2s ease;
     }
 
     .music-control:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
     }
 
     .music-icon {
       font-size: 15px;
       display: inline-block;
-      transition: transform 0.3s ease;
     }
 
     .playing .music-icon {
-      animation: beat 1.2s infinite ease-in-out;
+      animation: pulseNote 1.2s infinite ease-in-out;
     }
 
-    @keyframes beat {
+    @keyframes pulseNote {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.25); }
+      50% { transform: scale(1.3); }
     }
 
-    /* Audio Banner Notification */
+    /* Floating Banner Prompt */
     .audio-notice {
       position: fixed;
       bottom: 16px;
-      background: rgba(22, 18, 28, 0.88);
+      background: rgba(23, 19, 30, 0.92);
       color: #dfcaa2;
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      padding: 7px 18px;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 8px 18px;
       border-radius: 20px;
       font-size: 12px;
       letter-spacing: 0.5px;
       z-index: 9;
       pointer-events: none;
-      transition: opacity 0.8s ease;
+      transition: opacity 0.6s ease;
     }
 
-    /* Main Engagement Invitation Card */
+    /* Main Card */
     .invitation-card {
       position: relative;
       z-index: 1;
       width: 100%;
       max-width: 540px;
-      background: #fffdf9;
+      background: #fffdfa;
       border: 2px solid #d4af37;
       border-radius: 22px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(212, 175, 55, 0.25);
-      padding: 40px 24px 34px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 25px rgba(212, 175, 55, 0.2);
+      padding: 38px 22px 32px;
       text-align: center;
     }
 
     .inner-border {
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      border-radius: 16px;
-      padding: 30px 20px;
-    }
-
-    /* Intertwined Engagement Rings Emblem */
-    .ring-emblem {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .ring-svg {
-      width: 64px;
-      height: 48px;
-      filter: drop-shadow(0 2px 5px rgba(212, 175, 55, 0.4));
-    }
-
-    .sub-tag {
-      display: inline-block;
-      font-size: 11px;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: #8f6e28;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: 27px;
-      color: #1c150c;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
-
-    .event-details {
-      font-size: 14px;
-      color: #7b6851;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      margin-bottom: 24px;
-    }
-
-    /* Mode Navigation Tabs */
-    .nav-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .nav-tabs button {
-      background: #f7f2e7;
-      border: 1px solid #dcd1ba;
-      color: #635035;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      padding: 7px 13px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .nav-tabs button.active {
-      background: #b38728;
-      color: #ffffff;
-      border-color: #b38728;
-      box-shadow: 0 2px 8px rgba(179, 135, 40, 0.35);
-    }
-
-    /* Timers Display */
-    .countdown-display {
-      margin-bottom: 24px;
-      min-height: 84px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .grid-view {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-    }
-
-    .box {
-      background: #ffffff;
-      border: 1px solid #e7dcbe;
-      border-radius: 12px;
-      padding: 10px 4px;
-      min-width: 66px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .num {
-      display: block;
-      font-size: 26px;
-      font-weight: 700;
-      color: #a0781e;
-      line-height: 1.1;
-    }
-
-    .lbl {
-      display: block;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #7b6f60;
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    .sep {
-      font-size: 22px;
-      font-weight: bold;
-      color: #b38728;
-      margin-top: -12px;
-    }
-
-    .single-view {
-      display: none;
-      background: #ffffff;
-      border: 1px solid #e7dcbe;
-      border-radius: 14px;
-      padding: 16px 20px;
-      width: 100%;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .single-num {
-      display:
+      border: 1px solid rgba(
